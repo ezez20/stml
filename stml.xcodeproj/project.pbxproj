@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5105CEDA2A5613FC00352683 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 5105CED92A5613FC00352683 /* README.md */; };
 		51B0E3EA2A3B5B0300963BA0 /* stmlApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51B0E3E92A3B5B0300963BA0 /* stmlApp.swift */; };
 		51B0E3EC2A3B5B0300963BA0 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51B0E3EB2A3B5B0300963BA0 /* ContentView.swift */; };
 		51B0E3EE2A3B5B0400963BA0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 51B0E3ED2A3B5B0400963BA0 /* Assets.xcassets */; };
@@ -20,7 +19,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		5105CED92A5613FC00352683 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		5105CEDB2A56149E00352683 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		51B0E3E62A3B5B0300963BA0 /* stml.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = stml.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		51B0E3E92A3B5B0300963BA0 /* stmlApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = stmlApp.swift; sourceTree = "<group>"; };
 		51B0E3EB2A3B5B0300963BA0 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -49,8 +48,8 @@
 		51B0E3DD2A3B5B0300963BA0 = {
 			isa = PBXGroup;
 			children = (
+				5105CEDB2A56149E00352683 /* README.md */,
 				51B0E3E82A3B5B0300963BA0 /* stml */,
-				5105CED92A5613FC00352683 /* README.md */,
 				51B0E3E72A3B5B0300963BA0 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -209,7 +208,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5105CEDA2A5613FC00352683 /* README.md in Resources */,
 				51B0E3F12A3B5B0400963BA0 /* Preview Assets.xcassets in Resources */,
 				51B0E3EE2A3B5B0400963BA0 /* Assets.xcassets in Resources */,
 			);
