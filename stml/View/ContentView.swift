@@ -11,7 +11,7 @@ import CoreData
 struct ContentView: View {
     
     @Environment(\.managedObjectContext) private var viewContext
-
+    @StateObject var spotifyController = SpotifyController()
     
 // MARK: - View
     var body: some View {
@@ -21,6 +21,7 @@ struct ContentView: View {
                 Text("Connect to your Spotify Account")
                 Button {
                     print("Connect to Spotify Button Tapped")
+                    spotifyController.connectButtonTapped()
                 } label: {
                     Text("Connect to Spotify")
                 }

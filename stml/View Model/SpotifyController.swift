@@ -79,6 +79,12 @@ class SpotifyController: NSObject, ObservableObject {
         }
     }
     
+    func connectButtonTapped() {
+        guard let sessionManager = sessionManager else { return }
+        sessionManager.initiateSession(with: scopes, options: .clientOnly)
+        print("connectButtonTapped")
+    }
+    
 }
 
 // MAYBE: Move to Content View so we can updae views based on
@@ -121,6 +127,7 @@ extension SpotifyController: SPTSessionManagerDelegate {
     func sessionManager(manager: SPTSessionManager, didInitiate session: SPTSession) {
         appRemote.connectionParameters.accessToken = accessToken
         appRemote.connect()
+        print("sessionManager did initiate")
     }
     
     func sessionManager(manager: SPTSessionManager, didFailWith error: Error) {
