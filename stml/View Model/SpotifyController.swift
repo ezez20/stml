@@ -58,18 +58,23 @@ class SpotifyController: NSObject, ObservableObject {
         return manager
     }()
     
-    private var lastPlayerState: SPTAppRemotePlayerState?
+    var lastPlayerState: SPTAppRemotePlayerState?
     
     @Published var trackLabelText = ""
-    @Published var playPauseImage = UIImage(systemName: "pause.circle.fill")
-    
+    @Published var playPauseImage = UIImage(systemName: "play.circle.fill")
+    @Published var change = false
     
     func update(playerState: SPTAppRemotePlayerState) {
+        print("update triggered")
         if lastPlayerState?.track.uri != playerState.track.uri {
             fetchArtwork(for: playerState.track)
         }
-        lastPlayerState = playerState
-        trackLabelText = playerState.track.name
+        
+        DispatchQueue.main.async { [self] in
+            print("trackLabelText: \(trackLabelText)")
+            lastPlayerState = playerState
+            trackLabelText = playerState.track.name
+        }
         
         let configuration = UIImage.SymbolConfiguration(pointSize: 50, weight: .bold, scale: .large)
         if playerState.isPaused {
@@ -77,6 +82,7 @@ class SpotifyController: NSObject, ObservableObject {
         } else {
             playPauseImage = UIImage(systemName: "pause.circle.fill")
         }
+        
     }
     
     func connectButtonTapped() {
@@ -97,17 +103,23 @@ extension SpotifyController: SPTAppRemoteDelegate {
             if let error = error {
                 print("Error subscribing to Spotify's playerAPI: \(error.localizedDescription)")
             }
+            if success != nil {
+                print("Success != nil")
+                self.fetchPlayerState()
+            }
         }
-        fetchPlayerState()
+       
     }
     
     func appRemote(_ appRemote: SPTAppRemote, didFailConnectionAttemptWithError error: Error?) {
         // Add "updateContentView" function
+        print("lastPlayerState = nil")
         lastPlayerState = nil
     }
     
     func appRemote(_ appRemote: SPTAppRemote, didDisconnectWithError error: Error?) {
         // Add "updateContentView" function
+        print("lastPlayerState = nil")
         lastPlayerState = nil
     }
     
@@ -116,8 +128,8 @@ extension SpotifyController: SPTAppRemoteDelegate {
 // MARK: - SPTAppRemotePlayerAPIDelegate
 extension SpotifyController: SPTAppRemotePlayerStateDelegate {
     func playerStateDidChange(_ playerState: SPTAppRemotePlayerState) {
-        print("Spotify Track name: \(playerState.track.name)")
-        // Add "updatePlayerState func"
+        print("Spotify Track name: \(trackLabelText)")
+        update(playerState: playerState)
     }
 }
 
@@ -199,9 +211,10 @@ extension SpotifyController {
     func fetchPlayerState() {
         appRemote.playerAPI?.getPlayerState({ (playerState, error) in
             if let error = error {
-                print("Error getting player state:" + error.localizedDescription)
+                print("Error getting player state: " + error.localizedDescription)
             } else if let playerState = playerState as? SPTAppRemotePlayerState {
-                //                self?.update(playerState: playerState)
+                self.update(playerState: playerState)
+                print("Successfully fetched player state")
             }
         })
     }

@@ -23,9 +23,10 @@ struct stmlApp: App {
         
         WindowGroup {
             
-            ContentView()
+            ContentView(spotifyController: spotifyController)
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
                 .onOpenURL { url in
+                    print("onOpenURL: \(url)")
                     // For spotify authorization and authentication flow
                     let parameters = spotifyController.appRemote.authorizationParameters(from: url)
                     
@@ -40,6 +41,7 @@ struct stmlApp: App {
                 .onChange(of: scenePhase) { phase in
                     switch phase {
                     case .active:
+                        print("scenePhase: active")
                         if let accessToken = spotifyController.appRemote.connectionParameters.accessToken {
                             spotifyController.appRemote.connectionParameters.accessToken = accessToken
                             spotifyController.appRemote.connect()
@@ -48,6 +50,7 @@ struct stmlApp: App {
                             spotifyController.appRemote.connect()
                         }
                     case .inactive:
+                        print("scenePhase: inactive")
                         if spotifyController.appRemote.isConnected {
                             spotifyController.appRemote.disconnect()
                         }
