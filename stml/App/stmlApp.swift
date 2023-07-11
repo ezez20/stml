@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SpotifyiOS
 
 @main
 struct stmlApp: App {
@@ -45,6 +46,7 @@ struct stmlApp: App {
                         if let accessToken = spotifyController.appRemote.connectionParameters.accessToken {
                             spotifyController.appRemote.connectionParameters.accessToken = accessToken
                             spotifyController.appRemote.connect()
+                            print("ACCESS TOKEN: \(accessToken)")
                         } else if let accessToken = spotifyController.accessToken {
                             spotifyController.appRemote.connectionParameters.accessToken = accessToken
                             spotifyController.appRemote.connect()

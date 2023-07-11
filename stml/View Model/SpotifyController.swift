@@ -62,7 +62,9 @@ class SpotifyController: NSObject, ObservableObject {
     
     @Published var trackLabelText = ""
     @Published var playPauseImage = UIImage(systemName: "play.circle.fill")
+    @Published var albumImage = UIImage(named: "")
     @Published var change = false
+    @Published var trackURI = ""
     
     func update(playerState: SPTAppRemotePlayerState) {
         print("update triggered")
@@ -74,6 +76,8 @@ class SpotifyController: NSObject, ObservableObject {
             print("trackLabelText: \(trackLabelText)")
             lastPlayerState = playerState
             trackLabelText = playerState.track.name
+            print("Track URI: \(playerState.track.uri)")
+            trackURI = playerState.track.uri
         }
         
         let configuration = UIImage.SymbolConfiguration(pointSize: 50, weight: .bold, scale: .large)
@@ -89,6 +93,14 @@ class SpotifyController: NSObject, ObservableObject {
         guard let sessionManager = sessionManager else { return }
         sessionManager.initiateSession(with: scopes, options: .clientOnly)
         print("connectButtonTapped")
+    }
+    
+    func tappedPauseOrPlay() {
+        if let lastPlayerState = lastPlayerState, lastPlayerState.isPaused {
+            appRemote.playerAPI?.resume(nil)
+        } else {
+            appRemote.playerAPI?.pause(nil)
+        }
     }
     
 }
@@ -193,6 +205,12 @@ extension SpotifyController {
             }
             let responseObject = try? JSONSerialization.jsonObject(with: data) as? [String: Any]
             print("Access Token Dictionary=", responseObject ?? "")
+            if let unwrappedResponse = responseObject {
+                let accessTokenUnwrapped = unwrappedResponse["access_token"] as! String
+                print("ACCESS TOKEN UNWRAPPED: \(accessTokenUnwrapped)")
+                let defaults = UserDefaults.standard
+                defaults.set(accessTokenUnwrapped, forKey: "accessTokenUnwrapped")
+            }
             completion(responseObject, nil)
         }
         task.resume()
@@ -203,7 +221,9 @@ extension SpotifyController {
             if let error = error {
                 print("Error fetching track image: " + error.localizedDescription)
             } else if let image = image as? UIImage {
-                //                self?.imageView.image = image
+                DispatchQueue.main.async {
+                    self.albumImage = image
+                }
             }
         })
     }

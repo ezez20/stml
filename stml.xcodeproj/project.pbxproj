@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		5105CEDA2A5613FC00352683 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 5105CED92A5613FC00352683 /* README.md */; };
+		5139C7552A5CC42500E980EB /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5139C7542A5CC42500E980EB /* NetworkError.swift */; };
+		5139C7572A5CC55500E980EB /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5139C7562A5CC55500E980EB /* APIService.swift */; };
 		51B0E3EA2A3B5B0300963BA0 /* stmlApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51B0E3E92A3B5B0300963BA0 /* stmlApp.swift */; };
 		51B0E3EC2A3B5B0300963BA0 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51B0E3EB2A3B5B0300963BA0 /* ContentView.swift */; };
 		51B0E3EE2A3B5B0400963BA0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 51B0E3ED2A3B5B0400963BA0 /* Assets.xcassets */; };
@@ -21,6 +23,8 @@
 
 /* Begin PBXFileReference section */
 		5105CED92A5613FC00352683 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		5139C7542A5CC42500E980EB /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
+		5139C7562A5CC55500E980EB /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
 		51B0E3E62A3B5B0300963BA0 /* stml.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = stml.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		51B0E3E92A3B5B0300963BA0 /* stmlApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = stmlApp.swift; sourceTree = "<group>"; };
 		51B0E3EB2A3B5B0300963BA0 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -46,6 +50,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5139C7532A5CC40A00E980EB /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				5139C7542A5CC42500E980EB /* NetworkError.swift */,
+				5139C7562A5CC55500E980EB /* APIService.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
 		51B0E3DD2A3B5B0300963BA0 = {
 			isa = PBXGroup;
 			children = (
@@ -73,6 +86,7 @@
 				51B0E4032A3B669100963BA0 /* View */,
 				51B0E4042A3B66B600963BA0 /* View Model */,
 				51EBEEEE2A533C0800ACC68C /* Constants */,
+				5139C7532A5CC40A00E980EB /* Network */,
 				51B0E4072A3B69E500963BA0 /* Bridger Header */,
 				51B0E3EF2A3B5B0400963BA0 /* Preview Content */,
 				51B0E3ED2A3B5B0400963BA0 /* Assets.xcassets */,
@@ -223,10 +237,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				51EBEEF02A533C2900ACC68C /* Constants.swift in Sources */,
+				5139C7552A5CC42500E980EB /* NetworkError.swift in Sources */,
 				51B0E3F32A3B5B0400963BA0 /* Persistence.swift in Sources */,
 				51B0E3F62A3B5B0400963BA0 /* stml.xcdatamodeld in Sources */,
 				51B0E3EC2A3B5B0300963BA0 /* ContentView.swift in Sources */,
 				51EBEEF22A53644600ACC68C /* SpotifyController.swift in Sources */,
+				5139C7572A5CC55500E980EB /* APIService.swift in Sources */,
 				51B0E3EA2A3B5B0300963BA0 /* stmlApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

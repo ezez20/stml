@@ -6,11 +6,13 @@
 //
 
 import Foundation
+import SpotifyiOS
 
 let accessTokenKey = "access-token-key"
 let redirectUri = URL(string:"stml://")!
 let spotifyClientId = "21b1b1cccd734d338b697679e2a649a3"
 let spotifyClientSecretKey = "41949d49cab5416b87a211ae74dbbac8"
+let apiHost = "api.spotify.com"
 
 /*
  Scopes let you specify exactly what types of data your application wants to
@@ -28,7 +30,7 @@ let scopes: SPTScope = [
     .userTopRead, .userReadPlaybackState, .userReadCurrentlyPlaying,
     .userFollowRead, .userFollowModify,
 ]
-
+ 
 let stringScopes = [
     "user-read-email", "user-read-private",
     "user-read-playback-state", "user-modify-playback-state", "user-read-currently-playing",
