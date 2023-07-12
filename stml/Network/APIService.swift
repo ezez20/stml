@@ -58,7 +58,7 @@ class APIService {
         return songs
     }
     
-    func playSpotifyTrack(trackUri: String) {
+    func playSpotifyTrack(trackUri: String, playbackPosition: Int) {
         var components = URLComponents()
         components.scheme = "https"
         components.host = "api.spotify.com"
@@ -78,7 +78,7 @@ class APIService {
         let jsonDict: [String: AnyHashable] = [
             "uris": [trackUri],
             "offset": ["position": 0],
-            "position_ms": 20
+            "position_ms": playbackPosition
         ]
 
         let data = try! JSONSerialization.data(withJSONObject: jsonDict, options: .fragmentsAllowed)

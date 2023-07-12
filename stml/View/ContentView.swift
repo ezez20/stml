@@ -14,51 +14,58 @@ struct ContentView: View {
     @Environment(\.managedObjectContext) private var viewContext
     @ObservedObject var spotifyController: SpotifyController
     @State private var isConnected = false
-    @State private var spotifyUriSaved = ""
     
-// MARK: - View
+    // MARK: - View
     var body: some View {
         
-        NavigationView {
-            VStack {
-                
-                if isConnected {
-                    Text("Now playing: \(spotifyController.trackLabelText)")
-                    
-                    Button {
-                        spotifyController.tappedPauseOrPlay()
-                    } label: {
-                        Image(uiImage: (spotifyController.playPauseImage ?? UIImage(systemName: "questionmark"))!)
-                    }
-
-                    
-                    Image(uiImage: (spotifyController.albumImage ?? UIImage(systemName: "questionmark"))!)
-                }
-                
-                Text("Connect to your Spotify Account")
-                    .foregroundColor(isConnected ?  .green : .black)
+        GeometryReader { geo in
             
-                Button {
-                    print("Connect to Spotify Button Tapped")
-                    spotifyController.connectButtonTapped()
-                } label: {
-                    Text("Connect to Spotify")
-                }
-                .buttonStyle(.borderedProminent)
-                .tint(.green)
+            if spotifyController.appRemote.isConnected == false {
                 
-               Button {
-                   print("Spotify track URI saved: \(spotifyController.trackURI)")
-                   APIService.shared.playSpotifyTrack(trackUri: spotifyController.trackURI)
-
-                } label: {
-                    Text("Refresh")
+                ZStack {
+                    ConnectToSpotifyView(spotifyController: spotifyController)
                 }
-                .buttonStyle(.borderedProminent)
-                .tint(.green)
+                .frame(width: geo.size.width, height: geo.size.height)
+            
+            } else {
+                
+                TabView {
+                    
+                    ReadView()
+                        .tabItem {
+                            Label("Read", systemImage: "book")
+                            
+                            
+                        }
+                    
+                    MainScreenView(spotifyController: spotifyController)
+                        .tabItem {
+                            Label("Capture", systemImage: "camera")
+                            
+                        }
+                    
+                    JournalView()
+                        .tabItem {
+                            Label("Journal", systemImage: "square.and.pencil")
+                            
+                        }
+                    
+                    
+                    
+                    
+                }
+                .frame(width: geo.size.width, height: geo.size.height)
+                .tabViewStyle(PageTabViewStyle())
+
+                .onAppear {
+                    UITabBar.appearance().backgroundColor = UIColor.secondarySystemBackground
+                    UITabBar.appearance().isTranslucent = true
+                }
+                
             }
-        
-        }.onChange(of: spotifyController.trackLabelText) { v in
+        }
+        .ignoresSafeArea()
+        .onChange(of: spotifyController.trackLabelText) { v in
             print("onChange")
             if spotifyController.appRemote.isConnected {
                 isConnected = true
@@ -68,12 +75,10 @@ struct ContentView: View {
                 print("Not connected")
             }
         }
-        
-        
     }
-
-// MARK: - Functions
-
+    
+    // MARK: - Functions
+    
 }
 
 

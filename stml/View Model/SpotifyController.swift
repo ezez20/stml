@@ -63,8 +63,8 @@ class SpotifyController: NSObject, ObservableObject {
     @Published var trackLabelText = ""
     @Published var playPauseImage = UIImage(systemName: "play.circle.fill")
     @Published var albumImage = UIImage(named: "")
-    @Published var change = false
     @Published var trackURI = ""
+    @Published var playBackPositionState = 0
     
     func update(playerState: SPTAppRemotePlayerState) {
         print("update triggered")
@@ -101,6 +101,17 @@ class SpotifyController: NSObject, ObservableObject {
         } else {
             appRemote.playerAPI?.pause(nil)
         }
+    }
+    
+    func getCurrentPlaybackInfo() {
+        appRemote.playerAPI?.getPlayerState({ (playerState, error) in
+            if let error = error {
+                print("Error getting player state: " + error.localizedDescription)
+            } else if let playerState = playerState as? SPTAppRemotePlayerState {
+                print("Playback info: \(playerState.playbackPosition)")
+                self.playBackPositionState = playerState.playbackPosition
+            }
+        })
     }
     
 }
