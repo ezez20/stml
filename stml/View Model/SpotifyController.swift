@@ -61,9 +61,10 @@ class SpotifyController: NSObject, ObservableObject {
     var lastPlayerState: SPTAppRemotePlayerState?
     
     @Published var trackLabelText = ""
+    @Published var artistLabelText = ""
     @Published var playPauseImage = UIImage(systemName: "play.circle.fill")
     @Published var albumImage = UIImage(named: "")
-    @Published var trackURI = ""
+    @Published var currentTrackURI = ""
     @Published var playBackPositionState = 0
     
     func update(playerState: SPTAppRemotePlayerState) {
@@ -76,11 +77,12 @@ class SpotifyController: NSObject, ObservableObject {
             print("trackLabelText: \(trackLabelText)")
             lastPlayerState = playerState
             trackLabelText = playerState.track.name
-            print("Track URI: \(playerState.track.uri)")
-            trackURI = playerState.track.uri
+            artistLabelText = playerState.track.artist.name
+            currentTrackURI = playerState.track.uri
         }
         
         let configuration = UIImage.SymbolConfiguration(pointSize: 50, weight: .bold, scale: .large)
+        
         if playerState.isPaused {
             playPauseImage = UIImage(systemName: "play.circle.fill")
         } else {
@@ -103,13 +105,33 @@ class SpotifyController: NSObject, ObservableObject {
         }
     }
     
+    func tappedSkipForwardButton() {
+        appRemote.playerAPI?.skip(toNext: { _, error in
+            if let error = error {
+                print("appRemote Error skipping song on Spotify")
+            }
+        })
+    }
+    
+    func tappedSkipPreviousButton() {
+        appRemote.playerAPI?.skip(toPrevious: { _, error in
+            if let error = error {
+                print("appRemote Error skipping song on Spotify")
+            }
+        })
+    }
+    
     func getCurrentPlaybackInfo() {
         appRemote.playerAPI?.getPlayerState({ (playerState, error) in
             if let error = error {
                 print("Error getting player state: " + error.localizedDescription)
             } else if let playerState = playerState as? SPTAppRemotePlayerState {
+                
+                print("Track URI: \(playerState.track.uri)")
+                self.currentTrackURI = playerState.track.uri
                 print("Playback info: \(playerState.playbackPosition)")
                 self.playBackPositionState = playerState.playbackPosition
+               
             }
         })
     }

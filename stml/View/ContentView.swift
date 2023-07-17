@@ -22,7 +22,7 @@ struct ContentView: View {
             
             if spotifyController.appRemote.isConnected == false {
                 
-                ZStack {
+                VStack {
                     ConnectToSpotifyView(spotifyController: spotifyController)
                 }
                 .frame(width: geo.size.width, height: geo.size.height)
@@ -34,47 +34,41 @@ struct ContentView: View {
                     ReadView()
                         .tabItem {
                             Label("Read", systemImage: "book")
-                            
-                            
                         }
                     
                     MainScreenView(spotifyController: spotifyController)
                         .tabItem {
                             Label("Capture", systemImage: "camera")
-                            
                         }
                     
                     JournalView()
                         .tabItem {
                             Label("Journal", systemImage: "square.and.pencil")
-                            
                         }
-                    
-                    
-                    
                     
                 }
                 .frame(width: geo.size.width, height: geo.size.height)
                 .tabViewStyle(PageTabViewStyle())
-
                 .onAppear {
                     UITabBar.appearance().backgroundColor = UIColor.secondarySystemBackground
                     UITabBar.appearance().isTranslucent = true
                 }
                 
             }
+            
         }
         .ignoresSafeArea()
         .onChange(of: spotifyController.trackLabelText) { v in
             print("onChange")
             if spotifyController.appRemote.isConnected {
                 isConnected = true
-                print("Connected")
+                print("DDD: Connected")
             } else {
                 isConnected = false
-                print("Not connected")
+                print("DDD: Not connected")
             }
         }
+        
     }
     
     // MARK: - Functions

@@ -92,22 +92,7 @@ class APIService {
             
             if let responseCode = (response as? HTTPURLResponse)?.statusCode, let responseData = responseData {
                 
-                guard responseCode == 200 else {
-                    print("Invalid response code: \(responseCode)")
-                    switch responseCode {
-                    case 204:
-                        print("Successful response: .")
-                    case 401:
-                        print("Invalid response: Bad or expired token. This can happen if the user revoked a token or the access token has expired. You should re-authenticate the user.")
-                    case 403:
-                        print("Invalid response: Bad OAuth request (wrong consumer key, bad nonce, expired timestamp...). Unfortunately, re-authenticating the user won't help here.")
-                    case 429:
-                        print("Invalid response: The app has exceeded its rate limits.")
-                    default:
-                        print("Invalid reponse - default: unknown")
-                    }
-                    return
-                }
+                APIErrors.handleResponseCode(responseCode)
                 
                 if let responseJSONData = try? JSONSerialization.jsonObject(with: responseData, options: .allowFragments) {
                     print("Response JSON data = \(responseJSONData)")
@@ -117,6 +102,66 @@ class APIService {
             
         }.resume()
         
+    }
+    
+    func skipToPreviousSong() {
+        var components = URLComponents()
+        components.scheme = "https"
+        components.host = "api.spotify.com"
+        components.path = "/v1/me/player/previous"
+        
+        guard let url = components.url else { return }
+        var urlRequest = URLRequest(url: url)
+        
+        let defaults = UserDefaults.standard
+        guard let token = defaults.string(forKey: "accessTokenUnwrapped") else { return }
+        
+        urlRequest.addValue("Bearer " + token, forHTTPHeaderField: "Authorization")
+        
+        urlRequest.httpMethod = "POST"
+        
+        URLSession.shared.dataTask(with: urlRequest) { (responseData, response, error) in
+            if let error = error {
+                print("Error making POST request: \(error.localizedDescription)")
+                return
+            }
+            
+            if let responseCode = (response as? HTTPURLResponse)?.statusCode {
+                APIErrors.handleResponseCode(responseCode)
+            }
+            
+        }
+        .resume()
+    }
+    
+    func skipToNextSong() {
+        var components = URLComponents()
+        components.scheme = "https"
+        components.host = "api.spotify.com"
+        components.path = "/v1/me/player/next"
+        
+        guard let url = components.url else { return }
+        var urlRequest = URLRequest(url: url)
+        
+        let defaults = UserDefaults.standard
+        guard let token = defaults.string(forKey: "accessTokenUnwrapped") else { return }
+        
+        urlRequest.addValue("Bearer " + token, forHTTPHeaderField: "Authorization")
+        
+        urlRequest.httpMethod = "POST"
+        
+        URLSession.shared.dataTask(with: urlRequest) { (responseData, response, error) in
+            if let error = error {
+                print("Error making POST request: \(error.localizedDescription)")
+                return
+            }
+            
+            if let responseCode = (response as? HTTPURLResponse)?.statusCode {
+                APIErrors.handleResponseCode(responseCode)
+            }
+            
+        }
+        .resume()
     }
     
     

@@ -10,7 +10,7 @@ import SwiftUI
 struct MainScreenView: View {
     
     @State private var isConnected = false
-    @State private var spotifyController: SpotifyController
+    @ObservedObject var spotifyController: SpotifyController
     
     init(isConnected: Bool = false, spotifyController: SpotifyController) {
         self.isConnected = isConnected
@@ -23,8 +23,58 @@ struct MainScreenView: View {
             
             VStack {
                 
-                Spacer()
+                // MARK: - Top half/Player Controls
+                VStack {
+                    
+                    // Album/Song/Arist view
+                    HStack {
+                        Image(uiImage: (spotifyController.albumImage ?? UIImage())!)
+                            .resizable()
+                            .frame(width: 40, height: 40)
+                   
+                        VStack {
+                            
+                            Text(spotifyController.trackLabelText)
+                                .font(.body)
 
+                            Text(spotifyController.artistLabelText)
+                                .font(.caption)
+                            
+                        }
+                        .frame(height: 40)
+                    }
+              
+                    
+                    // Player controls
+                    HStack {
+                        
+                        Button {
+                            spotifyController.tappedSkipPreviousButton()
+                        } label: {
+                            Image(uiImage: UIImage(systemName: "backward.end.circle.fill")!)
+                        }
+                        
+                        Button {
+                            spotifyController.tappedPauseOrPlay()
+                        } label: {
+                            Image(uiImage: (spotifyController.playPauseImage ?? UIImage(systemName: "play.circle.fill"))!)
+                        }
+                        .padding()
+                        
+                        Button {
+                            spotifyController.tappedSkipForwardButton()
+                        } label: {
+                            Image(uiImage: UIImage(systemName: "forward.end.circle.fill")!)
+                        }
+                        
+                    }
+                    
+                }
+                .frame(width: geo.size.width - 20)
+                
+                Spacer()
+                
+                // MARK: - Bottom half/Camera button
                 HStack {
                     
                     Spacer()
@@ -37,7 +87,6 @@ struct MainScreenView: View {
                         .resizable()
                         .frame(width:  100, height: 100)
                         .foregroundColor(.yellow)
-                    
                     }
                     .frame(width: geo.size.width/3)
                     
@@ -59,10 +108,12 @@ struct MainScreenView: View {
                 
             }
             .background(.mint)
+            .frame(width: geo.size.width, height: geo.size.height)
             
         }
         
     }
+
 }
 
 struct MainScreenView_Previews: PreviewProvider {
