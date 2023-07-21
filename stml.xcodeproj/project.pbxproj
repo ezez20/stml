@@ -17,8 +17,9 @@
 		51B0E3F32A3B5B0400963BA0 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51B0E3F22A3B5B0400963BA0 /* Persistence.swift */; };
 		51B0E3F62A3B5B0400963BA0 /* stml.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 51B0E3F42A3B5B0400963BA0 /* stml.xcdatamodeld */; };
 		51B0E4012A3B65F300963BA0 /* SpotifyiOS in Frameworks */ = {isa = PBXBuildFile; productRef = 51B0E4002A3B65F300963BA0 /* SpotifyiOS */; };
+		51B5557D2A699D00005081F6 /* CameraFrameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51B5557C2A699D00005081F6 /* CameraFrameView.swift */; };
+		51B5557F2A699D18005081F6 /* CameraFrameHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51B5557E2A699D18005081F6 /* CameraFrameHandler.swift */; };
 		51C7B1A82A5EF629006791FC /* MainScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51C7B1A72A5EF629006791FC /* MainScreenView.swift */; };
-		51C7B1AA2A5F0204006791FC /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51C7B1A92A5F0204006791FC /* TabBarView.swift */; };
 		51C7B1AC2A5F451B006791FC /* ReadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51C7B1AB2A5F451B006791FC /* ReadView.swift */; };
 		51C7B1AE2A5F4607006791FC /* JournalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51C7B1AD2A5F4607006791FC /* JournalView.swift */; };
 		51C7B1B02A5F4B20006791FC /* ConnectToSpotifyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51C7B1AF2A5F4B20006791FC /* ConnectToSpotifyView.swift */; };
@@ -39,8 +40,9 @@
 		51B0E3F22A3B5B0400963BA0 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		51B0E3F52A3B5B0400963BA0 /* stml.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = stml.xcdatamodel; sourceTree = "<group>"; };
 		51B0E4082A3B6A3100963BA0 /* stml-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "stml-Bridging-Header.h"; sourceTree = "<group>"; };
+		51B5557C2A699D00005081F6 /* CameraFrameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraFrameView.swift; sourceTree = "<group>"; };
+		51B5557E2A699D18005081F6 /* CameraFrameHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraFrameHandler.swift; sourceTree = "<group>"; };
 		51C7B1A72A5EF629006791FC /* MainScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenView.swift; sourceTree = "<group>"; };
-		51C7B1A92A5F0204006791FC /* TabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
 		51C7B1AB2A5F451B006791FC /* ReadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadView.swift; sourceTree = "<group>"; };
 		51C7B1AD2A5F4607006791FC /* JournalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalView.swift; sourceTree = "<group>"; };
 		51C7B1AF2A5F4B20006791FC /* ConnectToSpotifyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectToSpotifyView.swift; sourceTree = "<group>"; };
@@ -127,10 +129,10 @@
 			children = (
 				51B0E3EB2A3B5B0300963BA0 /* ContentView.swift */,
 				51C7B1AF2A5F4B20006791FC /* ConnectToSpotifyView.swift */,
-				51C7B1A92A5F0204006791FC /* TabBarView.swift */,
 				51C7B1AB2A5F451B006791FC /* ReadView.swift */,
 				51C7B1A72A5EF629006791FC /* MainScreenView.swift */,
 				51C7B1AD2A5F4607006791FC /* JournalView.swift */,
+				51B5557C2A699D00005081F6 /* CameraFrameView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -139,6 +141,7 @@
 			isa = PBXGroup;
 			children = (
 				51EBEEF12A53644600ACC68C /* SpotifyController.swift */,
+				51B5557E2A699D18005081F6 /* CameraFrameHandler.swift */,
 			);
 			path = "View Model";
 			sourceTree = "<group>";
@@ -262,11 +265,12 @@
 				51C7B1A82A5EF629006791FC /* MainScreenView.swift in Sources */,
 				51C7B1AC2A5F451B006791FC /* ReadView.swift in Sources */,
 				51C7B1AE2A5F4607006791FC /* JournalView.swift in Sources */,
+				51B5557D2A699D00005081F6 /* CameraFrameView.swift in Sources */,
 				51B0E3EC2A3B5B0300963BA0 /* ContentView.swift in Sources */,
 				51EBEEF22A53644600ACC68C /* SpotifyController.swift in Sources */,
 				5139C7572A5CC55500E980EB /* APIService.swift in Sources */,
+				51B5557F2A699D18005081F6 /* CameraFrameHandler.swift in Sources */,
 				51C7B1B02A5F4B20006791FC /* ConnectToSpotifyView.swift in Sources */,
-				51C7B1AA2A5F0204006791FC /* TabBarView.swift in Sources */,
 				51B0E3EA2A3B5B0300963BA0 /* stmlApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -403,6 +407,8 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = stml/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
+				INFOPLIST_KEY_NSCameraUsageDescription = "Please allow usage of camera to continue.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -440,6 +446,8 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = stml/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
+				INFOPLIST_KEY_NSCameraUsageDescription = "Please allow usage of camera to continue.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

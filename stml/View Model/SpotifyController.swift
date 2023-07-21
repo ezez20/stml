@@ -62,7 +62,7 @@ class SpotifyController: NSObject, ObservableObject {
     
     @Published var trackLabelText = ""
     @Published var artistLabelText = ""
-    @Published var playPauseImage = UIImage(systemName: "play.circle.fill")
+    @Published var playingState = false
     @Published var albumImage = UIImage(named: "")
     @Published var currentTrackURI = ""
     @Published var playBackPositionState = 0
@@ -84,9 +84,9 @@ class SpotifyController: NSObject, ObservableObject {
         let configuration = UIImage.SymbolConfiguration(pointSize: 50, weight: .bold, scale: .large)
         
         if playerState.isPaused {
-            playPauseImage = UIImage(systemName: "play.circle.fill")
+            playingState = false
         } else {
-            playPauseImage = UIImage(systemName: "pause.circle.fill")
+            playingState = true
         }
         
     }
