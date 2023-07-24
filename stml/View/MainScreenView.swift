@@ -37,29 +37,30 @@ struct MainScreenView: View {
                     CameraFrameView(image: model.frame, takenImage: model.image)
                         .cornerRadius(20)
                         .frame(width: geo.size.width - 10, height: geo.size.height - 100)
-//                        .onTapGesture {
-//                            showPlayerControl.toggle()
-//                        }
+                        .onTapGesture {
+                            showPlayerControl.toggle()
+                        }
 
                     
                     VStack {
                         
                         // MARK: - Top half/Player Controls
+                        if showPlayerControl {
                             VStack {
-                                
                                 // Album/Song/Arist view
                                 HStack {
-                                    Image(uiImage: (spotifyController.albumImage ?? UIImage(named: "Image"))!)
+                                    Image(uiImage: ((spotifyController.albumImage ?? UIImage(named: "Image"))!))
                                         .resizable()
                                         .frame(width: 40, height: 40)
                                         .padding(5)
                                     
                                     VStack {
                                         
-                                        Text(spotifyController.trackLabelText)
+                                        Text(spotifyController.trackLabelText ?? "Unknown Track")
                                             .font(.body)
+                                            .bold()
                                         
-                                        Text(spotifyController.artistLabelText)
+                                        Text(spotifyController.artistLabelText ?? "Unknown Artist")
                                             .font(.caption)
                                         
                                     }
@@ -74,14 +75,17 @@ struct MainScreenView: View {
                                         spotifyController.tappedSkipPreviousButton()
                                     } label: {
                                         Image(systemName: "backward.end.circle.fill")
+                                            .resizable()
+                                            .frame(width: 30, height: 30)
                                     }
+                                    .padding()
                                     
                                     Button {
                                         spotifyController.tappedPauseOrPlay()
                                     } label: {
                                         Image(systemName: spotifyController.playingState ? "pause.circle.fill" : "play.circle.fill")
                                             .resizable()
-                                            .frame(width: 30, height: 30)
+                                            .frame(width: 50, height: 50)
                                     }
                                     .padding()
                                     
@@ -89,7 +93,11 @@ struct MainScreenView: View {
                                         spotifyController.tappedSkipForwardButton()
                                     } label: {
                                         Image(systemName: "forward.end.circle.fill")
+                                            .resizable()
+                                            .frame(width: 30, height: 30)
+                                        
                                     }
+                                    .padding()
                                     
                                 }
                                 .foregroundColor(.white)
@@ -97,7 +105,7 @@ struct MainScreenView: View {
                                 
                             }
                             .frame(width: geo.size.width)
-                        
+                        }
                         
                         Spacer()
                         
@@ -106,10 +114,11 @@ struct MainScreenView: View {
                             
                             Spacer()
                                 .frame(width: geo.size.width/3)
-                            
+                        
                             // Capture button
                             Button {  print("Camera button tapped")
                                 model.capturePhoto()
+                                spotifyController.getCurrentPlaybackInfo()
                                 } label: {
                             Image(systemName: "circle")
                                 .resizable()
@@ -123,9 +132,13 @@ struct MainScreenView: View {
                             
                             // Flip Camera button
                             Button {
-                                model.discardPhoto()
+                                if model.image == nil {
+                                    model.flipCamera()
+                                } else {
+                                    model.discardPhoto()
+                                }
                             } label: {
-                                Image(systemName: model.image == nil ? "arrow.triangle.2.circlepath.camera.fill" : "trash.fill")
+                                Image(systemName: model.image == nil ? "arrow.triangle.2.circlepath.circle.fill" : "trash.fill")
                                 .resizable()
                                 .scaledToFit()
                                 .frame(width: 40, height: 40)

@@ -33,25 +33,6 @@ struct ConnectToSpotifyView: View {
             .buttonStyle(.borderedProminent)
             .tint(.green)
             
-            Button {
-                print("Spotify track URI saved: \(spotifyController.currentTrackURI)")
-                spotifyController.getCurrentPlaybackInfo()
-                //                   APIService.shared.playSpotifyTrack(trackUri: spotifyController.trackURI)
-                
-            } label: {
-                Text("Mark Position")
-            }
-            .buttonStyle(.borderedProminent)
-            .tint(.green)
-            
-            Button {
-                APIService.shared.playSpotifyTrack(trackUri: spotifyController.currentTrackURI, playbackPosition: spotifyController.playBackPositionState)
-                
-            } label: {
-                Text("Replay position")
-            }
-            .buttonStyle(.borderedProminent)
-            .tint(.green)
             
         }
         

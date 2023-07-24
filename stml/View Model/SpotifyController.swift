@@ -60,12 +60,12 @@ class SpotifyController: NSObject, ObservableObject {
     
     var lastPlayerState: SPTAppRemotePlayerState?
     
-    @Published var trackLabelText = ""
-    @Published var artistLabelText = ""
+    @Published var trackLabelText: String?
+    @Published var artistLabelText: String?
     @Published var playingState = false
-    @Published var albumImage = UIImage(named: "")
-    @Published var currentTrackURI = ""
-    @Published var playBackPositionState = 0
+    @Published var albumImage: UIImage?
+    @Published var currentTrackURI: String?
+    @Published var playBackPositionState: Int?
     
     func update(playerState: SPTAppRemotePlayerState) {
         print("update triggered")
@@ -74,14 +74,11 @@ class SpotifyController: NSObject, ObservableObject {
         }
         
         DispatchQueue.main.async { [self] in
-            print("trackLabelText: \(trackLabelText)")
+            print("trackLabelText: \(String(describing: trackLabelText))")
             lastPlayerState = playerState
             trackLabelText = playerState.track.name
             artistLabelText = playerState.track.artist.name
-            currentTrackURI = playerState.track.uri
         }
-        
-        let configuration = UIImage.SymbolConfiguration(pointSize: 50, weight: .bold, scale: .large)
         
         if playerState.isPaused {
             playingState = false
@@ -107,7 +104,7 @@ class SpotifyController: NSObject, ObservableObject {
     
     func tappedSkipForwardButton() {
         appRemote.playerAPI?.skip(toNext: { _, error in
-            if let error = error {
+            if error != nil {
                 print("appRemote Error skipping song on Spotify")
             }
         })
@@ -115,7 +112,7 @@ class SpotifyController: NSObject, ObservableObject {
     
     func tappedSkipPreviousButton() {
         appRemote.playerAPI?.skip(toPrevious: { _, error in
-            if let error = error {
+            if error != nil {
                 print("appRemote Error skipping song on Spotify")
             }
         })
@@ -126,7 +123,6 @@ class SpotifyController: NSObject, ObservableObject {
             if let error = error {
                 print("Error getting player state: " + error.localizedDescription)
             } else if let playerState = playerState as? SPTAppRemotePlayerState {
-                
                 print("Track URI: \(playerState.track.uri)")
                 self.currentTrackURI = playerState.track.uri
                 print("Playback info: \(playerState.playbackPosition)")
@@ -160,12 +156,14 @@ extension SpotifyController: SPTAppRemoteDelegate {
         // Add "updateContentView" function
         print("lastPlayerState = nil")
         lastPlayerState = nil
+        playingState = false
     }
     
     func appRemote(_ appRemote: SPTAppRemote, didDisconnectWithError error: Error?) {
         // Add "updateContentView" function
         print("lastPlayerState = nil")
         lastPlayerState = nil
+        playingState = false
     }
     
 }
@@ -173,7 +171,7 @@ extension SpotifyController: SPTAppRemoteDelegate {
 // MARK: - SPTAppRemotePlayerAPIDelegate
 extension SpotifyController: SPTAppRemotePlayerStateDelegate {
     func playerStateDidChange(_ playerState: SPTAppRemotePlayerState) {
-        print("Spotify Track name: \(trackLabelText)")
+        print("Spotify Track name: \(String(describing: trackLabelText))")
         update(playerState: playerState)
     }
 }

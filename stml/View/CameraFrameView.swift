@@ -18,15 +18,21 @@ struct CameraFrameView: View {
             if let image = image {
                 Image(image, scale: 2.0, orientation: .up, label: label)
                     .frame(width: geo.size.width, height: geo.size.height)
-            } else if takenImage != nil {
-                Image(uiImage: takenImage!)
+                    .onAppear {
+                        print("Image view")
+                    }
+            } else if let takenImage = takenImage {
+                Image(uiImage: takenImage)
                     .frame(width: geo.size.width, height: geo.size.height)
                     .onAppear {
-                        print("Taken Image: \(takenImage)")
+                        print("takenImage view")
                     }
             } else {
-                Color.gray
+                Color.black
                     .frame(width: geo.size.width, height: geo.size.height)
+                    .onAppear {
+                        print("gray view")
+                    }
             }
         }
         
