@@ -13,6 +13,8 @@ struct MainScreenView: View {
     @ObservedObject var spotifyController: SpotifyController
     @State private var showPlayerControl = false
     
+    @State private var showingSheet = false
+    
     init(isConnected: Bool = false, spotifyController: SpotifyController) {
         self.isConnected = isConnected
         self.spotifyController = spotifyController
@@ -40,34 +42,35 @@ struct MainScreenView: View {
                         .onTapGesture {
                             showPlayerControl.toggle()
                         }
-
+                    
                     
                     VStack {
                         
                         // MARK: - Top half/Player Controls
-                        if showPlayerControl {
-                            VStack {
-                                // Album/Song/Arist view
-                                HStack {
-                                    Image(uiImage: ((spotifyController.albumImage ?? UIImage(named: "Image"))!))
-                                        .resizable()
-                                        .frame(width: 40, height: 40)
-                                        .padding(5)
-                                    
-                                    VStack {
-                                        
-                                        Text(spotifyController.trackLabelText ?? "Unknown Track")
-                                            .font(.body)
-                                            .bold()
-                                        
-                                        Text(spotifyController.artistLabelText ?? "Unknown Artist")
-                                            .font(.caption)
-                                        
-                                    }
-                                    .foregroundColor(.white)
-                                    .frame(height: 40)
-                                }
+                        
+                        VStack {
+                            // Album/Song/Arist view
+                            HStack {
+                                Image(uiImage: ((spotifyController.albumImage ?? UIImage(named: "Image"))!))
+                                    .resizable()
+                                    .frame(width: 40, height: 40)
+                                    .padding(5)
                                 
+                                VStack {
+                                    
+                                    Text(spotifyController.trackLabelText ?? "Unknown Track")
+                                        .font(.body)
+                                        .bold()
+                                    
+                                    Text(spotifyController.artistLabelText ?? "Unknown Artist")
+                                        .font(.caption)
+                                    
+                                }
+                                .foregroundColor(.white)
+                                .frame(height: 40)
+                            }
+                            
+                            if showPlayerControl {
                                 // Player controls
                                 HStack {
                                     
@@ -102,52 +105,79 @@ struct MainScreenView: View {
                                 }
                                 .foregroundColor(.white)
                                 
-                                
                             }
-                            .frame(width: geo.size.width)
                         }
+                        .frame(width: geo.size.width)
+                        
                         
                         Spacer()
                         
                         // MARK: - Bottom half/Camera button
-                        HStack {
+                        HStack(alignment: .center) {
                             
-                            Spacer()
-                                .frame(width: geo.size.width/3)
-                        
-                            // Capture button
-                            Button {  print("Camera button tapped")
-                                model.capturePhoto()
-                                spotifyController.getCurrentPlaybackInfo()
+                            if model.image != nil {
+                                
+                                Button {
+                                    model.discardPhoto()
                                 } label: {
-                            Image(systemName: "circle")
-                                .resizable()
-                                .frame(width:  80, height: 80)
-                                .foregroundColor(.green)
-                        }
-                        .frame(width: geo.size.width/3)
+                                    Image(systemName: "trash.circle.fill")
+                                        .resizable()
+                                        .scaledToFit()
+                                        .frame(width: 40, height: 40)
+                                        .foregroundColor(.white)
+                                       
+                                }
+                                .padding()
+                                .frame(width: geo.size.width/3)
+                                
+                            } else {
+                                Spacer()
+                                    .padding()
+                                    .frame(width: geo.size.width/3)
+                            }
                             
+                            if model.image == nil {
+                                // Capture button
+                                Button {  print("Camera button tapped")
+                                    showingSheet.toggle()
+                                    model.capturePhoto()
+                                    spotifyController.getCurrentPlaybackInfo()
+                                } label: {
+                                    Image(systemName: "circle")
+                                        .resizable()
+                                        .frame(width: 80, height: 80)
+                                        .foregroundColor(.green)
+                                }
+                                .frame(width: geo.size.width/3)
+                                
+                            } else {
+                                Spacer()
+                                    .padding()
+                                    .frame(width: geo.size.width/3)
+                            }
                             
-                            Spacer()
+//                            Spacer()
                             
                             // Flip Camera button
                             Button {
+                            
                                 if model.image == nil {
                                     model.flipCamera()
                                 } else {
-                                    model.discardPhoto()
+                                    showingSheet.toggle()
                                 }
                             } label: {
-                                Image(systemName: model.image == nil ? "arrow.triangle.2.circlepath.circle.fill" : "trash.fill")
-                                .resizable()
-                                .scaledToFit()
-                                .frame(width: 40, height: 40)
-                                .foregroundColor(.white)
-                                .padding()
-                        }
+                                Image(systemName: model.image == nil ? "arrow.triangle.2.circlepath.circle.fill" : "square.and.pencil.circle.fill")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: 40, height: 40)
+                                    .foregroundColor(.white)
+                                   
+                            }
+                            .padding()
+                            .frame(width: geo.size.width/3)
+                       
                             
-                            Spacer()
-                    
                         }
                         .padding(.bottom, 70)
                         
@@ -159,9 +189,15 @@ struct MainScreenView: View {
                 .background(.ultraThinMaterial)
                 
             }
-        
+            .sheet(isPresented: $showingSheet) {
+                AddNoteSheetView()
+                    .presentationDetents([.height(150)])
+                    .opacity(0.8)
+            }
+            
         }
     }
+    
 }
 
 struct MainScreenView_Previews: PreviewProvider {

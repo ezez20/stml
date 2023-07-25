@@ -31,7 +31,7 @@ struct CameraFrameView: View {
                 Color.black
                     .frame(width: geo.size.width, height: geo.size.height)
                     .onAppear {
-                        print("gray view")
+                        print("black view")
                     }
             }
         }

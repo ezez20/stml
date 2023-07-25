@@ -19,6 +19,7 @@
 		51B0E4012A3B65F300963BA0 /* SpotifyiOS in Frameworks */ = {isa = PBXBuildFile; productRef = 51B0E4002A3B65F300963BA0 /* SpotifyiOS */; };
 		51B5557D2A699D00005081F6 /* CameraFrameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51B5557C2A699D00005081F6 /* CameraFrameView.swift */; };
 		51B5557F2A699D18005081F6 /* CameraFrameHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51B5557E2A699D18005081F6 /* CameraFrameHandler.swift */; };
+		51C0D31E2A6F1A8E00125E5A /* AddNoteSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51C0D31D2A6F1A8E00125E5A /* AddNoteSheetView.swift */; };
 		51C7B1A82A5EF629006791FC /* MainScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51C7B1A72A5EF629006791FC /* MainScreenView.swift */; };
 		51C7B1AC2A5F451B006791FC /* ReadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51C7B1AB2A5F451B006791FC /* ReadView.swift */; };
 		51C7B1AE2A5F4607006791FC /* JournalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51C7B1AD2A5F4607006791FC /* JournalView.swift */; };
@@ -42,6 +43,7 @@
 		51B0E4082A3B6A3100963BA0 /* stml-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "stml-Bridging-Header.h"; sourceTree = "<group>"; };
 		51B5557C2A699D00005081F6 /* CameraFrameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraFrameView.swift; sourceTree = "<group>"; };
 		51B5557E2A699D18005081F6 /* CameraFrameHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraFrameHandler.swift; sourceTree = "<group>"; };
+		51C0D31D2A6F1A8E00125E5A /* AddNoteSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNoteSheetView.swift; sourceTree = "<group>"; };
 		51C7B1A72A5EF629006791FC /* MainScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenView.swift; sourceTree = "<group>"; };
 		51C7B1AB2A5F451B006791FC /* ReadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadView.swift; sourceTree = "<group>"; };
 		51C7B1AD2A5F4607006791FC /* JournalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalView.swift; sourceTree = "<group>"; };
@@ -133,6 +135,7 @@
 				51C7B1A72A5EF629006791FC /* MainScreenView.swift */,
 				51C7B1AD2A5F4607006791FC /* JournalView.swift */,
 				51B5557C2A699D00005081F6 /* CameraFrameView.swift */,
+				51C0D31D2A6F1A8E00125E5A /* AddNoteSheetView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -261,6 +264,7 @@
 				51D0DBCA2A658D1300991CD8 /* APIErrors.swift in Sources */,
 				5139C7552A5CC42500E980EB /* NetworkError.swift in Sources */,
 				51B0E3F32A3B5B0400963BA0 /* Persistence.swift in Sources */,
+				51C0D31E2A6F1A8E00125E5A /* AddNoteSheetView.swift in Sources */,
 				51B0E3F62A3B5B0400963BA0 /* stml.xcdatamodeld in Sources */,
 				51C7B1A82A5EF629006791FC /* MainScreenView.swift in Sources */,
 				51C7B1AC2A5F451B006791FC /* ReadView.swift in Sources */,
@@ -413,7 +417,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -451,7 +455,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

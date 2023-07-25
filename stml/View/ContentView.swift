@@ -14,7 +14,8 @@ struct ContentView: View {
     @Environment(\.managedObjectContext) private var viewContext
     @ObservedObject var spotifyController: SpotifyController
     @State private var isConnected = false
-    
+    @State private var tabBarSelection = 1
+
     // MARK: - View
     var body: some View {
         
@@ -29,22 +30,25 @@ struct ContentView: View {
             
             } else {
                 
-                TabView {
+                TabView(selection: $tabBarSelection) {
                     
                     ReadView()
                         .tabItem {
                             Label("Read", systemImage: "book")
                         }
+                        .tag(0)
                     
                     MainScreenView(spotifyController: spotifyController)
                         .tabItem {
                             Label("Capture", systemImage: "camera")
                         }
+                        .tag(1)
                     
                     JournalView()
                         .tabItem {
                             Label("Journal", systemImage: "square.and.pencil")
                         }
+                        .tag(2)
                     
                 }
                 .frame(width: geo.size.width, height: geo.size.height)
@@ -68,6 +72,7 @@ struct ContentView: View {
                 print("DDD: Not connected")
             }
         }
+     
         
     }
     

@@ -132,12 +132,13 @@ extension CameraFrameHandler: AVCapturePhotoCaptureDelegate {
     func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?) {
 //        guard let imageData = photo.fileDataRepresentation() else { return }
         print("didFinishProcessingPhoto")
-        guard let imageData = photo.cgImageRepresentation() else {
-            return
-        }
-        let previewImage = UIImage(cgImage: imageData, scale: 2.0, orientation: cameraPositonFront ? .right : .leftMirrored)
+
         
-        DispatchQueue.global(qos: .background).async { [self] in
+        DispatchQueue.global(qos: .userInitiated).async { [self] in
+            guard let imageData = photo.cgImageRepresentation() else {
+                return
+            }
+            let previewImage = UIImage(cgImage: imageData, scale: 2.0, orientation: cameraPositonFront ? .right : .leftMirrored)
             DispatchQueue.main.async {
 //                self.frame = nil
                 self.image = previewImage
