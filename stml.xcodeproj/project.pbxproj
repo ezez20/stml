@@ -24,6 +24,7 @@
 		51C7B1AC2A5F451B006791FC /* ReadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51C7B1AB2A5F451B006791FC /* ReadView.swift */; };
 		51C7B1AE2A5F4607006791FC /* JournalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51C7B1AD2A5F4607006791FC /* JournalView.swift */; };
 		51C7B1B02A5F4B20006791FC /* ConnectToSpotifyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51C7B1AF2A5F4B20006791FC /* ConnectToSpotifyView.swift */; };
+		51C7F0712A718E7400871E94 /* ScrollableTextEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51C7F0702A718E7400871E94 /* ScrollableTextEditor.swift */; };
 		51D0DBCA2A658D1300991CD8 /* APIErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51D0DBC92A658D1300991CD8 /* APIErrors.swift */; };
 		51EBEEF02A533C2900ACC68C /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51EBEEEF2A533C2900ACC68C /* Constants.swift */; };
 		51EBEEF22A53644600ACC68C /* SpotifyController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51EBEEF12A53644600ACC68C /* SpotifyController.swift */; };
@@ -48,6 +49,7 @@
 		51C7B1AB2A5F451B006791FC /* ReadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadView.swift; sourceTree = "<group>"; };
 		51C7B1AD2A5F4607006791FC /* JournalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalView.swift; sourceTree = "<group>"; };
 		51C7B1AF2A5F4B20006791FC /* ConnectToSpotifyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectToSpotifyView.swift; sourceTree = "<group>"; };
+		51C7F0702A718E7400871E94 /* ScrollableTextEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollableTextEditor.swift; sourceTree = "<group>"; };
 		51D0DBC92A658D1300991CD8 /* APIErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIErrors.swift; sourceTree = "<group>"; };
 		51EBEEED2A53373B00ACC68C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		51EBEEEF2A533C2900ACC68C /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -133,9 +135,10 @@
 				51C7B1AF2A5F4B20006791FC /* ConnectToSpotifyView.swift */,
 				51C7B1AB2A5F451B006791FC /* ReadView.swift */,
 				51C7B1A72A5EF629006791FC /* MainScreenView.swift */,
-				51C7B1AD2A5F4607006791FC /* JournalView.swift */,
 				51B5557C2A699D00005081F6 /* CameraFrameView.swift */,
 				51C0D31D2A6F1A8E00125E5A /* AddNoteSheetView.swift */,
+				51C7B1AD2A5F4607006791FC /* JournalView.swift */,
+				51C7F0702A718E7400871E94 /* ScrollableTextEditor.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -271,6 +274,7 @@
 				51C7B1AE2A5F4607006791FC /* JournalView.swift in Sources */,
 				51B5557D2A699D00005081F6 /* CameraFrameView.swift in Sources */,
 				51B0E3EC2A3B5B0300963BA0 /* ContentView.swift in Sources */,
+				51C7F0712A718E7400871E94 /* ScrollableTextEditor.swift in Sources */,
 				51EBEEF22A53644600ACC68C /* SpotifyController.swift in Sources */,
 				5139C7572A5CC55500E980EB /* APIService.swift in Sources */,
 				51B5557F2A699D18005081F6 /* CameraFrameHandler.swift in Sources */,

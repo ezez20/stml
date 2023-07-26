@@ -44,7 +44,7 @@ struct ContentView: View {
                         }
                         .tag(1)
                     
-                    JournalView()
+                    JournalView(tabBarSelection: $tabBarSelection)
                         .tabItem {
                             Label("Journal", systemImage: "square.and.pencil")
                         }
@@ -53,6 +53,8 @@ struct ContentView: View {
                 }
                 .frame(width: geo.size.width, height: geo.size.height)
                 .tabViewStyle(PageTabViewStyle())
+                .transition(.slide)
+                .animation(.easeInOut, value: 2)
                 .onAppear {
                     UITabBar.appearance().backgroundColor = UIColor.secondarySystemBackground
                     UITabBar.appearance().isTranslucent = true
