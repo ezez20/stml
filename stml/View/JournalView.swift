@@ -50,31 +50,17 @@ struct JournalView: View {
 //                            noteIsFocused = true
 //                        }
 //                    }
-                ScrollView {
+              
                     ScrollableTextEditor(text: $textField)
                         .background(Color("customYellow"))
-                        .padding()
-                        .frame(width: geo.size.width, height: geo.size.height - 40)
+                        .frame(width: geo.size.width - 40, height: geo.size.height - 40)
+                        .position(x: geo.size.width/2, y: geo.size.height/2 + 20)
                         .focused($noteIsFocused)
-                        .toolbar {
-                            ToolbarItemGroup(placement: .keyboard) {
-                                Spacer()
-                                Button {
-                                    noteIsFocused = false
-                                } label: {
-                                    Image(systemName: "chevron.down")
-                                        .foregroundColor(.yellow)
-                                }
-                                
-                            }
-                        }
                         .onAppear {
                             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                                 noteIsFocused = true
                             }
                         }
-                }
-                .position(x: geo.size.width/2, y: geo.size.height/2 + 40)
                 
                 if noteIsFocused {
                     Button {

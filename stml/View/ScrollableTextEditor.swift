@@ -70,7 +70,7 @@ struct ScrollableTextEditor: UIViewRepresentable {
         }
         
         func textViewDidBeginEditing(_ textView: UITextView) {
-            textView.selectedTextRange = textView.textRange(from: textView.beginningOfDocument, to: textView.endOfDocument)
+//            textView.selectedTextRange = textView.textRange(from: textView.beginningOfDocument, to: textView.endOfDocument)
         }
         
         func textViewDidEndEditing(_ textView: UITextView) {
