@@ -11,6 +11,7 @@ struct ScrollableTextEditor: UIViewRepresentable {
     @Binding var text: String
 //    @Binding var scrollOffset: CGPoint
     @State var scrollOffset = CGPoint()
+
     
     func makeUIView(context: Context) -> UITextView {
         let textView = UITextView()
@@ -20,7 +21,8 @@ struct ScrollableTextEditor: UIViewRepresentable {
         textView.backgroundColor = UIColor.clear
         textView.text = text
         textView.font = UIFont.systemFont(ofSize: 20)
-//        textView.inputAccessoryView = makeToolbar()
+        textView.tintColor = .systemYellow
+
         return textView
     }
     
@@ -33,20 +35,6 @@ struct ScrollableTextEditor: UIViewRepresentable {
         }
     }
     
-//    func makeToolbar() -> UIToolbar {
-//           let toolbar = UIToolbar()
-//           toolbar.barStyle = .default
-//           let doneButton = UIBarButtonItem(title: "Done", style: .done, target: context.coordinator, action: #selector(don))
-//           let spacer = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-//           toolbar.items = [spacer, doneButton]
-//           toolbar.sizeToFit()
-//           return toolbar
-//       }
-//
-//    @objc func doneButtonTapped() {
-//        self.view.endEditing(true) // Hide the keyboard
-//          }
-    
     func makeCoordinator() -> Coordinator {
         Coordinator(parent: self)
     }
@@ -54,6 +42,7 @@ struct ScrollableTextEditor: UIViewRepresentable {
     class Coordinator: NSObject, UITextViewDelegate {
         var parent: ScrollableTextEditor
         var previousRect = CGRectZero
+        @ObservedObject var keyboardHeightHandler = KeyboardHeightHandler()
         
         init(parent: ScrollableTextEditor) {
             self.parent = parent
@@ -63,16 +52,25 @@ struct ScrollableTextEditor: UIViewRepresentable {
             parent.text = textView.text
             parent.scrollOffset = textView.contentOffset
             
-            var pos = textView.endOfDocument
-            var currentRect = textView.caretRect(for: pos)
-            if(currentRect.origin.y > previousRect.origin.y){
+            let pos = textView.endOfDocument
+            let currentRect = textView.caretRect(for: pos)
+            if(currentRect.origin.y > previousRect.origin.y) || (currentRect.origin.y < previousRect.origin.y) {
                 //new line reached, write your code
-                print("New line started")
+                print("New line started OR New line deleted")
+                
+                if currentRect.maxY > keyboardHeightHandler.keyboardHeight + 60 {
+                    print("Text went passed keyboard ")
+                    let yOffset = currentRect.maxY - (UIScreen.main.bounds.height - keyboardHeightHandler.keyboardHeight - 120)
+                    self.parent.scrollOffset = CGPoint(x: 0, y: yOffset)
+                }
+                
             }
-            if currentRect.origin.y > UIScreen.main.bounds.height/2 - 20{
-                self.parent.scrollOffset = CGPoint(x: 0, y: UIScreen.main.bounds.midX + 20)
-            }
+
             previousRect = currentRect
+        }
+        
+        func textViewDidBeginEditing(_ textView: UITextView) {
+            textView.selectedTextRange = textView.textRange(from: textView.beginningOfDocument, to: textView.endOfDocument)
         }
         
         func textViewDidEndEditing(_ textView: UITextView) {
@@ -80,4 +78,5 @@ struct ScrollableTextEditor: UIViewRepresentable {
         }
     }
 }
+
 

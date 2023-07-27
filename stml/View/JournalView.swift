@@ -15,6 +15,8 @@ struct JournalView: View {
     @State private var scrollOffset: CGPoint = .zero
     
     @State private var count = 0
+    @ObservedObject private var keyboardHandler = KeyboardHeightHandler()
+    
     var body: some View {
         
         GeometryReader { geo in
@@ -69,11 +71,22 @@ struct JournalView: View {
                         .onAppear {
                             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                                 noteIsFocused = true
-                                
                             }
                         }
                 }
                 .position(x: geo.size.width/2, y: geo.size.height/2 + 40)
+                
+                if noteIsFocused {
+                    Button {
+                        noteIsFocused = false
+                    } label: {
+                        Image(systemName: "chevron.down")
+                            .foregroundColor(.yellow)
+                            .bold()
+                            .padding()
+                    }
+                    .position(x: keyboardHandler.keyboardRect.maxX - 30, y: keyboardHandler.keyboardRect.minY - 70)
+                }
                 
                 HStack {
                     
@@ -96,7 +109,7 @@ struct JournalView: View {
                     
                     
                     Button {
-                        UIApplication.shared.keyWindow?.endEditing(true)
+                        noteIsFocused = false
                     } label: {
                         Image(systemName: "checkmark")
                             .scaledToFit()
@@ -120,7 +133,9 @@ struct JournalView: View {
             }
             .frame(width: geo.size.width, height: geo.size.height)
             .background(Color("customYellow"))
-            
+            .onChange(of: tabBarSelection) { _ in
+                noteIsFocused = false
+            }
         }
         
     }
