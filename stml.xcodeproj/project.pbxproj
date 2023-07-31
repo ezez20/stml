@@ -15,7 +15,6 @@
 		51B0E3EE2A3B5B0400963BA0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 51B0E3ED2A3B5B0400963BA0 /* Assets.xcassets */; };
 		51B0E3F12A3B5B0400963BA0 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 51B0E3F02A3B5B0400963BA0 /* Preview Assets.xcassets */; };
 		51B0E3F32A3B5B0400963BA0 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51B0E3F22A3B5B0400963BA0 /* Persistence.swift */; };
-		51B0E3F62A3B5B0400963BA0 /* stml.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 51B0E3F42A3B5B0400963BA0 /* stml.xcdatamodeld */; };
 		51B0E4012A3B65F300963BA0 /* SpotifyiOS in Frameworks */ = {isa = PBXBuildFile; productRef = 51B0E4002A3B65F300963BA0 /* SpotifyiOS */; };
 		51B5557D2A699D00005081F6 /* CameraFrameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51B5557C2A699D00005081F6 /* CameraFrameView.swift */; };
 		51B5557F2A699D18005081F6 /* CameraFrameHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51B5557E2A699D18005081F6 /* CameraFrameHandler.swift */; };
@@ -27,6 +26,8 @@
 		51C7F0712A718E7400871E94 /* ScrollableTextEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51C7F0702A718E7400871E94 /* ScrollableTextEditor.swift */; };
 		51D0DBCA2A658D1300991CD8 /* APIErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51D0DBC92A658D1300991CD8 /* APIErrors.swift */; };
 		51D1AA2F2A72D464002AE893 /* KeyboardHeightHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51D1AA2E2A72D464002AE893 /* KeyboardHeightHandler.swift */; };
+		51D1AA352A72F7E6002AE893 /* StmlDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 51D1AA332A72F7E6002AE893 /* StmlDataModel.xcdatamodeld */; };
+		51D1AA372A7300DF002AE893 /* ReadJournalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51D1AA362A7300DF002AE893 /* ReadJournalView.swift */; };
 		51EBEEF02A533C2900ACC68C /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51EBEEEF2A533C2900ACC68C /* Constants.swift */; };
 		51EBEEF22A53644600ACC68C /* SpotifyController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51EBEEF12A53644600ACC68C /* SpotifyController.swift */; };
 /* End PBXBuildFile section */
@@ -41,7 +42,6 @@
 		51B0E3ED2A3B5B0400963BA0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		51B0E3F02A3B5B0400963BA0 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		51B0E3F22A3B5B0400963BA0 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
-		51B0E3F52A3B5B0400963BA0 /* stml.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = stml.xcdatamodel; sourceTree = "<group>"; };
 		51B0E4082A3B6A3100963BA0 /* stml-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "stml-Bridging-Header.h"; sourceTree = "<group>"; };
 		51B5557C2A699D00005081F6 /* CameraFrameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraFrameView.swift; sourceTree = "<group>"; };
 		51B5557E2A699D18005081F6 /* CameraFrameHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraFrameHandler.swift; sourceTree = "<group>"; };
@@ -53,6 +53,8 @@
 		51C7F0702A718E7400871E94 /* ScrollableTextEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollableTextEditor.swift; sourceTree = "<group>"; };
 		51D0DBC92A658D1300991CD8 /* APIErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIErrors.swift; sourceTree = "<group>"; };
 		51D1AA2E2A72D464002AE893 /* KeyboardHeightHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardHeightHandler.swift; sourceTree = "<group>"; };
+		51D1AA342A72F7E6002AE893 /* StmlDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = StmlDataModel.xcdatamodel; sourceTree = "<group>"; };
+		51D1AA362A7300DF002AE893 /* ReadJournalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadJournalView.swift; sourceTree = "<group>"; };
 		51EBEEED2A53373B00ACC68C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		51EBEEEF2A533C2900ACC68C /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		51EBEEF12A53644600ACC68C /* SpotifyController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotifyController.swift; sourceTree = "<group>"; };
@@ -141,6 +143,7 @@
 				51C0D31D2A6F1A8E00125E5A /* AddNoteSheetView.swift */,
 				51C7B1AD2A5F4607006791FC /* JournalView.swift */,
 				51C7F0702A718E7400871E94 /* ScrollableTextEditor.swift */,
+				51D1AA362A7300DF002AE893 /* ReadJournalView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -159,6 +162,7 @@
 			isa = PBXGroup;
 			children = (
 				51B0E3F22A3B5B0400963BA0 /* Persistence.swift */,
+				51D1AA332A72F7E6002AE893 /* StmlDataModel.xcdatamodeld */,
 			);
 			path = Persistence;
 			sourceTree = "<group>";
@@ -167,7 +171,6 @@
 			isa = PBXGroup;
 			children = (
 				51B0E3E92A3B5B0300963BA0 /* stmlApp.swift */,
-				51B0E3F42A3B5B0400963BA0 /* stml.xcdatamodeld */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -271,14 +274,15 @@
 				5139C7552A5CC42500E980EB /* NetworkError.swift in Sources */,
 				51B0E3F32A3B5B0400963BA0 /* Persistence.swift in Sources */,
 				51C0D31E2A6F1A8E00125E5A /* AddNoteSheetView.swift in Sources */,
-				51B0E3F62A3B5B0400963BA0 /* stml.xcdatamodeld in Sources */,
 				51C7B1A82A5EF629006791FC /* MainScreenView.swift in Sources */,
 				51C7B1AC2A5F451B006791FC /* ReadView.swift in Sources */,
 				51C7B1AE2A5F4607006791FC /* JournalView.swift in Sources */,
+				51D1AA352A72F7E6002AE893 /* StmlDataModel.xcdatamodeld in Sources */,
 				51B5557D2A699D00005081F6 /* CameraFrameView.swift in Sources */,
 				51B0E3EC2A3B5B0300963BA0 /* ContentView.swift in Sources */,
 				51C7F0712A718E7400871E94 /* ScrollableTextEditor.swift in Sources */,
 				51EBEEF22A53644600ACC68C /* SpotifyController.swift in Sources */,
+				51D1AA372A7300DF002AE893 /* ReadJournalView.swift in Sources */,
 				5139C7572A5CC55500E980EB /* APIService.swift in Sources */,
 				51D1AA2F2A72D464002AE893 /* KeyboardHeightHandler.swift in Sources */,
 				51B5557F2A699D18005081F6 /* CameraFrameHandler.swift in Sources */,
@@ -524,13 +528,13 @@
 /* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
-		51B0E3F42A3B5B0400963BA0 /* stml.xcdatamodeld */ = {
+		51D1AA332A72F7E6002AE893 /* StmlDataModel.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				51B0E3F52A3B5B0400963BA0 /* stml.xcdatamodel */,
+				51D1AA342A72F7E6002AE893 /* StmlDataModel.xcdatamodel */,
 			);
-			currentVersion = 51B0E3F52A3B5B0400963BA0 /* stml.xcdatamodel */;
-			path = stml.xcdatamodeld;
+			currentVersion = 51D1AA342A72F7E6002AE893 /* StmlDataModel.xcdatamodel */;
+			path = StmlDataModel.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

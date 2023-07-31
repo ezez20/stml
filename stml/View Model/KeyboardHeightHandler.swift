@@ -11,6 +11,7 @@ class KeyboardHeightHandler: ObservableObject {
     
     @Published var keyboardHeight: CGFloat = 0
     @Published var keyboardRect = CGRect()
+    @Published var keyboardShowing = false
     
     init() {
         self.listenForKeyboardNotifications()
@@ -25,12 +26,14 @@ class KeyboardHeightHandler: ObservableObject {
             
             self.keyboardRect = keyboardRect
             self.keyboardHeight = keyboardRect.height
+            self.keyboardShowing = true
         }
         
         NotificationCenter.default.addObserver(forName: UIResponder.keyboardDidHideNotification,
                                                object: nil,
                                                queue: .main) { (notification) in
             self.keyboardHeight = 0
+            self.keyboardShowing = false
         }
     }
 }

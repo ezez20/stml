@@ -38,11 +38,11 @@ struct MainScreenView: View {
                     
                     CameraFrameView(image: model.frame, takenImage: model.image)
                         .cornerRadius(20)
-                        .frame(width: geo.size.width - 10, height: geo.size.height - 100)
+                        .frame(width: geo.size.width - 10, height: geo.size.height)
                         .onTapGesture {
                             showPlayerControl.toggle()
                         }
-                    
+
                     
                     VStack {
                         
@@ -191,11 +191,12 @@ struct MainScreenView: View {
             }
             .sheet(isPresented: $showingSheet) {
                 AddNoteSheetView()
-                    .presentationDetents([.height(150)])
+                    .presentationDetents([.height(120)])
                     .opacity(0.8)
             }
             
         }
+        
     }
     
 }

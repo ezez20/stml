@@ -11,7 +11,9 @@ import Combine
 
 struct ContentView: View {
     
-    @Environment(\.managedObjectContext) private var viewContext
+    @Environment(\.managedObjectContext) private var moc
+    @FetchRequest(sortDescriptors: []) private var journalNotes: FetchedResults<JournalNotes>
+    
     @ObservedObject var spotifyController: SpotifyController
     @State private var isConnected = false
     @State private var tabBarSelection = 1
@@ -38,6 +40,7 @@ struct ContentView: View {
                         }
                         .tag(0)
                     
+                    
                     MainScreenView(spotifyController: spotifyController)
                         .tabItem {
                             Label("Capture", systemImage: "camera")
@@ -51,14 +54,9 @@ struct ContentView: View {
                         .tag(2)
                     
                 }
-                .frame(width: geo.size.width, height: geo.size.height)
-                .tabViewStyle(PageTabViewStyle())
-                .transition(.slide)
+                .transition(.scale)
                 .animation(.easeInOut, value: 2)
-                .onAppear {
-                    UITabBar.appearance().backgroundColor = UIColor.secondarySystemBackground
-                    UITabBar.appearance().isTranslucent = true
-                }
+
                 
             }
             
@@ -75,7 +73,6 @@ struct ContentView: View {
             }
         }
      
-        
     }
     
     // MARK: - Functions
